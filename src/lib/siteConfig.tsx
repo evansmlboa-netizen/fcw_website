@@ -1,4 +1,10 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
+import nigeriaImg from "@/assets/stories/nigeria-flood-relief.jpg";
+import cambodiaImg from "@/assets/stories/cambodia-school-meals.jpg";
+import ghanaImg from "@/assets/stories/ghana-community-kitchen.jpg";
+import kenyaImg from "@/assets/stories/kenya-clean-water.jpg";
+import europeImg from "@/assets/stories/europe-winter-relief.jpg";
+import mozambiqueImg from "@/assets/stories/mozambique-supply-chain.jpg";
 
 /* ── Types ── */
 export interface HeroConfig {
