@@ -2,10 +2,30 @@ import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Clock } from "lucide-react";
 import { useSiteConfig } from "@/lib/siteConfig";
 
+import storyKitchen from "@/assets/story-kitchen.jpg";
+import storyWater from "@/assets/story-water.jpg";
+import storyWinter from "@/assets/story-winter.jpg";
+import storyDistribution from "@/assets/story-distribution.jpg";
+import storySchool from "@/assets/story-school.jpg";
+import storyRelief from "@/assets/story-relief.jpg";
+
+const fallbackImages: Record<string, string> = {
+  s1: storyDistribution,
+  s2: storySchool,
+  s3: storyKitchen,
+  s4: storyWater,
+  s5: storyWinter,
+  s6: storyRelief,
+};
+const defaultFallback = storyKitchen;
+
 const FeaturedStoriesSection = () => {
   const { config } = useSiteConfig();
   const fs = config.featuredStories;
-  const allStories = config.stories.stories;
+  const allStories = config.stories.stories.map((s) => ({
+    ...s,
+    image: s.image || fallbackImages[s.id] || defaultFallback,
+  }));
   const displayStories = allStories.slice(0, fs.maxStories);
 
   if (displayStories.length === 0) return null;
