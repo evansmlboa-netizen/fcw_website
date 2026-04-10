@@ -46,13 +46,18 @@ const Admin = () => {
     <main className="min-h-screen bg-muted">
       <div className="bg-card border-b border-border">
         <div className="container mx-auto px-6 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-              <Settings className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <div>
-              <h1 className="text-xl font-display font-bold text-foreground">Admin Panel</h1>
-              <p className="text-xs text-muted-foreground">Configure site content & pages</p>
+          <div className="flex items-center gap-4">
+            <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <ArrowLeft className="w-4 h-4" /> Back to site
+            </Link>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <Settings className="w-5 h-5 text-primary-foreground" />
+              </div>
+              <div>
+                <h1 className="text-xl font-display font-bold text-foreground">Admin Panel</h1>
+                <p className="text-xs text-muted-foreground">Configure site content & pages</p>
+              </div>
             </div>
           </div>
           <div className="flex gap-2">
