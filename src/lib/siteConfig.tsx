@@ -154,6 +154,10 @@ export interface FooterConfig {
   phone: string;
   address: string;
   copyrightText: string;
+  privacyPolicyUrl: string;
+  privacyPolicyFileName: string;
+  termsOfServiceUrl: string;
+  termsOfServiceFileName: string;
 }
 
 export interface PageVisibility {
