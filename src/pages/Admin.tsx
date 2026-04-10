@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { useSiteConfig, TeamMember } from "@/lib/siteConfig";
-import { Settings, Home, Info, Heart, BarChart3, BookOpen, Globe, RotateCcw, Save, Plus, Trash2, Eye, EyeOff, Newspaper, Palette, ArrowLeft } from "lucide-react";
+import { Settings, Home, Info, Heart, BarChart3, BookOpen, Globe, RotateCcw, Save, Plus, Trash2, Eye, EyeOff, Newspaper, Palette, Lock, LogOut } from "lucide-react";
 import HomePanel from "@/components/admin/HomePanel";
 import ImpactPanel from "@/components/admin/ImpactPanel";
 import StoriesPanel from "@/components/admin/StoriesPanel";
@@ -36,28 +35,77 @@ const Field = ({ label, value, onChange, multiline = false }: {
   </div>
 );
 
+const ADMIN_PASS = "fcw-admin-2024";
+
+const LoginScreen = ({ onLogin }: { onLogin: () => void }) => {
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ADMIN_PASS) {
+      sessionStorage.setItem("admin_auth", "true");
+      onLogin();
+    } else {
+      setError(true);
+      setTimeout(() => setError(false), 2000);
+    }
+  };
+
+  return (
+    <main className="min-h-screen bg-muted flex items-center justify-center p-6">
+      <div className="w-full max-w-sm">
+        <div className="bg-card rounded-2xl border border-border shadow-lg p-8 space-y-6">
+          <div className="text-center space-y-2">
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
+              <Lock className="w-7 h-7 text-primary" />
+            </div>
+            <h1 className="text-xl font-display font-bold text-foreground">Admin Login</h1>
+            <p className="text-sm text-muted-foreground">Enter the admin password to continue</p>
+          </div>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              autoFocus
+              className={`w-full px-4 py-3 rounded-lg border text-sm bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-colors ${
+                error ? "border-destructive ring-2 ring-destructive/30" : "border-input"
+              }`}
+            />
+            {error && <p className="text-xs text-destructive">Incorrect password. Try again.</p>}
+            <button type="submit"
+              className="w-full px-4 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all">
+              Sign In
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+  );
+};
+
 const Admin = () => {
   const { config, updateConfig, resetConfig } = useSiteConfig();
   const [active, setActive] = useState<Tab>("branding");
+  const [authed, setAuthed] = useState(() => sessionStorage.getItem("admin_auth") === "true");
 
   const save = () => toast.success("Configuration saved!");
+
+  if (!authed) return <LoginScreen onLogin={() => setAuthed(true)} />;
 
   return (
     <main className="min-h-screen bg-muted">
       <div className="bg-card border-b border-border">
         <div className="container mx-auto px-6 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="w-4 h-4" /> Back to site
-            </Link>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <Settings className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <div>
-                <h1 className="text-xl font-display font-bold text-foreground">Admin Panel</h1>
-                <p className="text-xs text-muted-foreground">Configure site content & pages</p>
-              </div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+              <Settings className="w-5 h-5 text-primary-foreground" />
+            </div>
+            <div>
+              <h1 className="text-xl font-display font-bold text-foreground">Admin Panel</h1>
+              <p className="text-xs text-muted-foreground">Configure site content & pages</p>
             </div>
           </div>
           <div className="flex gap-2">
@@ -68,6 +116,10 @@ const Admin = () => {
             <button onClick={save}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all">
               <Save className="w-3.5 h-3.5" /> Save
+            </button>
+            <button onClick={() => { sessionStorage.removeItem("admin_auth"); setAuthed(false); }}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-destructive/30 text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors">
+              <LogOut className="w-3.5 h-3.5" /> Logout
             </button>
           </div>
         </div>
