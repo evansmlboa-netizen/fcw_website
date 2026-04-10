@@ -279,13 +279,33 @@ function FooterPanel() {
   return (
     <div>
       <h2 className="text-lg font-display font-bold text-foreground mb-1">Footer</h2>
-      <p className="text-sm text-muted-foreground mb-6">Edit footer tagline and contact details.</p>
+      <p className="text-sm text-muted-foreground mb-6">Edit footer tagline, contact details, and legal documents.</p>
       <div className="space-y-4">
         <Field label="Tagline" value={f.tagline} onChange={(v) => set({ tagline: v })} multiline />
         <Field label="Copyright Text" value={f.copyrightText} onChange={(v) => set({ copyrightText: v })} />
         <Field label="Email" value={f.email} onChange={(v) => set({ email: v })} />
         <Field label="Phone" value={f.phone} onChange={(v) => set({ phone: v })} />
         <Field label="Address" value={f.address} onChange={(v) => set({ address: v })} />
+      </div>
+      <div className="mt-8 space-y-6">
+        <div>
+          <h3 className="text-sm font-bold text-foreground mb-1">Legal Documents</h3>
+          <p className="text-xs text-muted-foreground mb-4">Upload documents that users can download from the footer links.</p>
+        </div>
+        <DocumentUploadField
+          label="Privacy Policy"
+          value={f.privacyPolicyUrl}
+          fileName={f.privacyPolicyFileName}
+          onChangeUrl={(v) => set({ privacyPolicyUrl: v })}
+          onChangeFileName={(v) => set({ privacyPolicyFileName: v })}
+        />
+        <DocumentUploadField
+          label="Terms of Service"
+          value={f.termsOfServiceUrl}
+          fileName={f.termsOfServiceFileName}
+          onChangeUrl={(v) => set({ termsOfServiceUrl: v })}
+          onChangeFileName={(v) => set({ termsOfServiceFileName: v })}
+        />
       </div>
     </div>
   );
