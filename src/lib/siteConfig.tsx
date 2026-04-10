@@ -153,6 +153,7 @@ export interface FooterConfig {
   email: string;
   phone: string;
   address: string;
+  copyrightText: string;
 }
 
 export interface PageVisibility {
@@ -290,6 +291,7 @@ export const defaultConfig: SiteConfig = {
     email: "info@fcw.org",
     phone: "+1 555 123 4567",
     address: "123 Hope Street, New York, NY 10001",
+    copyrightText: "© 2026 FCW — Feeding Communities Worldwide. All Rights Reserved.",
   },
   pages: {
     home: true,
