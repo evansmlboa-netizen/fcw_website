@@ -24,19 +24,27 @@ const App = () => (
       <Sonner />
       <SiteConfigProvider>
         <BrowserRouter>
-          <Navbar />
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/impact" element={<Impact />} />
-            <Route path="/donate" element={<Donate />} />
-            <Route path="/stories" element={<Stories />} />
-            <Route path="/story/:source/:id" element={<StoryDetail />} />
-            <Route path="/about" element={<About />} />
+            {/* Admin portal — no public navbar/footer */}
             <Route path="/admin" element={<Admin />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+
+            {/* Public portal */}
+            <Route path="*" element={
+              <>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/impact" element={<Impact />} />
+                  <Route path="/donate" element={<Donate />} />
+                  <Route path="/stories" element={<Stories />} />
+                  <Route path="/story/:source/:id" element={<StoryDetail />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+                <Footer />
+              </>
+            } />
           </Routes>
-          <Footer />
         </BrowserRouter>
       </SiteConfigProvider>
     </TooltipProvider>
