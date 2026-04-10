@@ -136,7 +136,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 pt-6 border-t border-background/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-background/40">
-          <p>© 2026 FCW — Feeding Communities Worldwide. All Rights Reserved.</p>
+          <p>{f.copyrightText || "© 2026 FCW — Feeding Communities Worldwide. All Rights Reserved."}</p>
           <div className="flex gap-4">
             <a href="#" className="hover:text-background transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-background transition-colors">Terms of Service</a>

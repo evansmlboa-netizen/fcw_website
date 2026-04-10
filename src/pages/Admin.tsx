@@ -282,6 +282,7 @@ function FooterPanel() {
       <p className="text-sm text-muted-foreground mb-6">Edit footer tagline and contact details.</p>
       <div className="space-y-4">
         <Field label="Tagline" value={f.tagline} onChange={(v) => set({ tagline: v })} multiline />
+        <Field label="Copyright Text" value={f.copyrightText} onChange={(v) => set({ copyrightText: v })} />
         <Field label="Email" value={f.email} onChange={(v) => set({ email: v })} />
         <Field label="Phone" value={f.phone} onChange={(v) => set({ phone: v })} />
         <Field label="Address" value={f.address} onChange={(v) => set({ address: v })} />
