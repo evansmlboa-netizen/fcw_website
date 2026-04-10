@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { useSiteConfig, TeamMember } from "@/lib/siteConfig";
-import { Settings, Home, Info, Heart, BarChart3, BookOpen, Globe, RotateCcw, Save, Plus, Trash2, Eye, EyeOff, Newspaper, Palette } from "lucide-react";
+import { Settings, Home, Info, Heart, BarChart3, BookOpen, Globe, RotateCcw, Save, Plus, Trash2, Eye, EyeOff, Newspaper, Palette, ArrowLeft } from "lucide-react";
 import HomePanel from "@/components/admin/HomePanel";
 import ImpactPanel from "@/components/admin/ImpactPanel";
 import StoriesPanel from "@/components/admin/StoriesPanel";
