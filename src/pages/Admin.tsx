@@ -117,6 +117,10 @@ const Admin = () => {
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all">
               <Save className="w-3.5 h-3.5" /> Save
             </button>
+            <button onClick={() => { sessionStorage.removeItem("admin_auth"); setAuthed(false); }}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-destructive/30 text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors">
+              <LogOut className="w-3.5 h-3.5" /> Logout
+            </button>
           </div>
         </div>
       </div>
