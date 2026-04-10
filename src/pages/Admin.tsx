@@ -6,6 +6,7 @@ import HomePanel from "@/components/admin/HomePanel";
 import ImpactPanel from "@/components/admin/ImpactPanel";
 import StoriesPanel from "@/components/admin/StoriesPanel";
 import BrandingPanel from "@/components/admin/BrandingPanel";
+import DocumentUploadField from "@/components/admin/DocumentUploadField";
 
 type Tab = "branding" | "pages" | "home" | "about" | "donate" | "impact" | "stories" | "footer";
 

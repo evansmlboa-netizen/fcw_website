@@ -138,8 +138,16 @@ const Footer = () => {
         <div className="mt-8 pt-6 border-t border-background/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-background/40">
           <p>{f.copyrightText || "© 2026 FCW — Feeding Communities Worldwide. All Rights Reserved."}</p>
           <div className="flex gap-4">
-            <a href="#" className="hover:text-background transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-background transition-colors">Terms of Service</a>
+            {f.privacyPolicyUrl ? (
+              <a href={f.privacyPolicyUrl} download={f.privacyPolicyFileName || "Privacy-Policy"} className="hover:text-background transition-colors">Privacy Policy</a>
+            ) : (
+              <span className="text-background/20 cursor-default">Privacy Policy</span>
+            )}
+            {f.termsOfServiceUrl ? (
+              <a href={f.termsOfServiceUrl} download={f.termsOfServiceFileName || "Terms-of-Service"} className="hover:text-background transition-colors">Terms of Service</a>
+            ) : (
+              <span className="text-background/20 cursor-default">Terms of Service</span>
+            )}
           </div>
         </div>
       </div>
